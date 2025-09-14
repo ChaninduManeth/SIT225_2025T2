@@ -1,6 +1,6 @@
 #include <Arduino_LSM6DS3.h>
 
-const unsigned long SAMPLE_PERIOD_MS = 10;  // ~50 Hz
+const unsigned long SAMPLE_PERIOD_MS = 10;
 
 void setup() {
   Serial.begin(115200);
@@ -9,7 +9,6 @@ void setup() {
     Serial.println("ERR: IMU init failed");
     while (1) { delay(15000); }
   }
-  // CSV header for sanity checks
   Serial.println("ts_ms,gx_dps,gy_dps,gz_dps");
 }
 
@@ -21,7 +20,7 @@ void loop() {
     last = now;
     float x, y, z;
     if (IMU.gyroscopeAvailable()) {
-      IMU.readGyroscope(x, y, z); // units: degrees/second
+      IMU.readGyroscope(x, y, z);
       Serial.print(now);
       Serial.print(',');
       Serial.print(x, 6);
